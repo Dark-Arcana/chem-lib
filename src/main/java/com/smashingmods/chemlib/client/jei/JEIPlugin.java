@@ -16,7 +16,7 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(ChemLib.MODID, "jei_plugin");
+        return ChemLib.modLoc("jei_plugin");
     }
 
     @Override

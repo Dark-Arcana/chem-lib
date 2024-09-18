@@ -11,8 +11,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -21,7 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @OnlyIn(Dist.CLIENT)
 public class PeriodicTableScreen extends Screen {
 
-    private static final ResourceLocation PERIODIC_TABLE = new ResourceLocation(ChemLib.MODID, "textures/gui/periodic_table.png");
+    private static final ResourceLocation PERIODIC_TABLE = ChemLib.modLoc("textures/gui/periodic_table.png");
 
     public PeriodicTableScreen() {
         super(MutableComponent.create(new TranslatableContents("item.chemlib.periodic_table", null, TranslatableContents.NO_ARGS)));
@@ -29,6 +29,7 @@ public class PeriodicTableScreen extends Screen {
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
 
         int imageWidth = 2000;
         int imageHeight = 1016;
@@ -90,11 +91,10 @@ public class PeriodicTableScreen extends Screen {
                 y += boxHeight;
             }
         }
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
     private void drawElementTip(GuiGraphics pGuiGraphics, Element pElement) {
-        pGuiGraphics.blit(new ResourceLocation(ChemLib.MODID, String.format("textures/gui/elements/%s_tooltip.png", pElement.getChemicalName())), ((this.width - 276) / 2) - 55, ((this.height - (7 * 28)) / 2) - 30, 274, 80, 0, 0, 40, 40, 40, 40);
+        pGuiGraphics.blit(ChemLib.modLoc(String.format("textures/gui/elements/%s_tooltip.png", pElement.getChemicalName())), ((this.width - 276) / 2) - 55, ((this.height - (7 * 28)) / 2) - 30, 274, 80, 0, 0, 40, 40, 40, 40);
     }
 
     @Override
